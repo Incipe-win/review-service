@@ -1,0 +1,72 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: Review API
+    description: 定义评价服务
+    version: 0.0.1
+paths:
+    /v1/review:
+        post:
+            tags:
+                - Review
+            description: 创建评价
+            operationId: Review_CreateReview
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.review.v1.CreateReviewRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.review.v1.CreateReviewReply'
+components:
+    schemas:
+        api.review.v1.CreateReviewReply:
+            type: object
+            properties:
+                reviewID:
+                    type: string
+            description: 创建评价的回复参数
+        api.review.v1.CreateReviewRequest:
+            type: object
+            properties:
+                userID:
+                    type: string
+                    description: 用户ID
+                orderID:
+                    type: string
+                    description: 订单ID
+                score:
+                    type: integer
+                    description: 评分
+                    format: int32
+                serviceScore:
+                    type: integer
+                    description: 服务评分
+                    format: int32
+                expressScore:
+                    type: integer
+                    description: 物流评分
+                    format: int32
+                content:
+                    type: string
+                    description: 评价内容
+                picInfo:
+                    type: string
+                    description: 图片信息
+                videoInfo:
+                    type: string
+                    description: 视频信息
+                anonymous:
+                    type: boolean
+                    description: 是否匿名
+            description: 创建评价的请求参数
+tags:
+    - name: Review

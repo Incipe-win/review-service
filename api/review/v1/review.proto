@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package api.review.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "review-service/api/review/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.review.v1";
+
+// 定义评价服务
+service Review {
+	// 创建评价
+	rpc CreateReview (CreateReviewRequest) returns (CreateReviewReply) {
+		option (google.api.http) = {
+			post: "/v1/review"
+			body: "*"
+		};
+	}
+	// 更新评价
+	rpc UpdateReview (UpdateReviewRequest) returns (UpdateReviewReply) {
+	}
+	// 删除评价
+	rpc DeleteReview (DeleteReviewRequest) returns (DeleteReviewReply);
+	// 获取评价
+	rpc GetReview (GetReviewRequest) returns (GetReviewReply);
+	// 列出评价
+	rpc ListReview (ListReviewRequest) returns (ListReviewReply);
+}
+
+// 创建评价的请求参数
+message CreateReviewRequest {
+	// 用户ID
+	int64 userID = 1;
+	// 订单ID
+	int64 orderID = 2;
+	// 评分
+	int32 score = 3;
+	// 服务评分
+	int32 serviceScore = 4;
+	// 物流评分
+	int32 expressScore = 5;
+	// 评价内容
+	string content = 6;
+	// 图片信息
+	string picInfo = 7;
+	// 视频信息
+	string videoInfo = 8;
+	// 是否匿名
+	bool anonymous = 9;
+}
+// 创建评价的回复参数
+message CreateReviewReply {
+	int64 reviewID = 1;
+}
+
+message UpdateReviewRequest {}
+message UpdateReviewReply {}
+
+message DeleteReviewRequest {}
+message DeleteReviewReply {}
+
+message GetReviewRequest {}
+message GetReviewReply {}
+
+message ListReviewRequest {}
+message ListReviewReply {}
