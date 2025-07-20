@@ -13,6 +13,13 @@ import (
 type ReviewRepo interface {
 	SaveReview(context.Context, *model.ReviewInfo) (*model.ReviewInfo, error)
 	GetReviewByOrderID(context.Context, int64) ([]*model.ReviewInfo, error)
+	GetReview(context.Context, int64) (*model.ReviewInfo, error)
+	SaveReply(context.Context, *model.ReviewReplyInfo) (*model.ReviewReplyInfo, error)
+	GetReviewReply(context.Context, int64) (*model.ReviewReplyInfo, error)
+	AuditReview(context.Context, *AuditParam) error
+	AppealReview(context.Context, *AppealParam) error
+	AuditAppeal(context.Context, *AuditAppealParam) error
+	ListReviewByUserID(ctx context.Context, userID int64, offset, limit int) ([]*model.ReviewInfo, error)
 }
 
 // ReviewUsecase is a Review usecase.
@@ -39,4 +46,24 @@ func (uc *ReviewUsecase) CreateReview(ctx context.Context, review *model.ReviewI
 	}
 	review.ReviewID = snowflake.GenID()
 	return uc.repo.SaveReview(ctx, review)
+}
+
+func (uc *ReviewUsecase) GetReview(ctx context.Context, reviewID int64) (*model.ReviewInfo, error) {
+	return uc.repo.GetReview(ctx, reviewID)
+}
+
+func (uc *ReviewUsecase) AuditReview(ctx context.Context, param *AuditParam) error {
+	return uc.repo.AuditReview(ctx, param)
+}
+
+func (uc *ReviewUsecase) CreateReply(ctx context.Context, param *ReplyParam) (*model.ReviewReplyInfo, error) {
+	reply := &model.ReviewReplyInfo{
+		ReplyID:   snowflake.GenID(),
+		ReviewID:  param.ReviewID,
+		StoreID:   param.StoreID,
+		Content:   param.Content,
+		PicInfo:   param.PicInfo,
+		VideoInfo: param.VideoInfo,
+	}
+	return uc.repo.SaveReply(ctx, reply)
 }

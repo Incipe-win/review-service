@@ -25,9 +25,11 @@ const (
 type ErrorReason int32
 
 const (
-	ErrorReason_NEED_LOGIN     ErrorReason = 0
-	ErrorReason_DB_FAILED      ErrorReason = 1
-	ErrorReason_ORDER_REVIEWED ErrorReason = 2
+	ErrorReason_NEED_LOGIN                           ErrorReason = 0
+	ErrorReason_DB_FAILED                            ErrorReason = 1
+	ErrorReason_ORDER_REVIEWED                       ErrorReason = 2
+	ErrorReason_DUPLICATE_REPLY                      ErrorReason = 3
+	ErrorReason_HORIZONTAL_OVERSTEPPING_OF_AUTHORITY ErrorReason = 4
 )
 
 // Enum value maps for ErrorReason.
@@ -36,11 +38,15 @@ var (
 		0: "NEED_LOGIN",
 		1: "DB_FAILED",
 		2: "ORDER_REVIEWED",
+		3: "DUPLICATE_REPLY",
+		4: "HORIZONTAL_OVERSTEPPING_OF_AUTHORITY",
 	}
 	ErrorReason_value = map[string]int32{
-		"NEED_LOGIN":     0,
-		"DB_FAILED":      1,
-		"ORDER_REVIEWED": 2,
+		"NEED_LOGIN":                           0,
+		"DB_FAILED":                            1,
+		"ORDER_REVIEWED":                       2,
+		"DUPLICATE_REPLY":                      3,
+		"HORIZONTAL_OVERSTEPPING_OF_AUTHORITY": 4,
 	}
 )
 
@@ -75,12 +81,14 @@ var File_api_review_v1_review_error_proto protoreflect.FileDescriptor
 
 const file_api_review_v1_review_error_proto_rawDesc = "" +
 	"\n" +
-	" api/review/v1/review_error.proto\x12\rapi.review.v1\x1a\x13errors/errors.proto*X\n" +
+	" api/review/v1/review_error.proto\x12\rapi.review.v1\x1a\x13errors/errors.proto*\xa3\x01\n" +
 	"\vErrorReason\x12\x14\n" +
 	"\n" +
 	"NEED_LOGIN\x10\x00\x1a\x04\xa8E\x91\x03\x12\x13\n" +
 	"\tDB_FAILED\x10\x01\x1a\x04\xa8E\xf4\x03\x12\x18\n" +
-	"\x0eORDER_REVIEWED\x10\x02\x1a\x04\xa8E\x90\x03\x1a\x04\xa0E\xf4\x03B2\n" +
+	"\x0eORDER_REVIEWED\x10\x02\x1a\x04\xa8E\x93\x03\x12\x19\n" +
+	"\x0fDUPLICATE_REPLY\x10\x03\x1a\x04\xa8E\x93\x03\x12.\n" +
+	"$HORIZONTAL_OVERSTEPPING_OF_AUTHORITY\x10\x04\x1a\x04\xa8E\x93\x03\x1a\x04\xa0E\xf4\x03B2\n" +
 	"\rapi.review.v1P\x01Z\x1freview-service/api/review/v1;v1b\x06proto3"
 
 var (

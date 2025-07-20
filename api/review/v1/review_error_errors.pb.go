@@ -40,9 +40,33 @@ func IsOrderReviewed(err error) bool {
 		return false
 	}
 	e := errors.FromError(err)
-	return e.Reason == ErrorReason_ORDER_REVIEWED.String() && e.Code == 400
+	return e.Reason == ErrorReason_ORDER_REVIEWED.String() && e.Code == 403
 }
 
 func ErrorOrderReviewed(format string, args ...interface{}) *errors.Error {
-	return errors.New(400, ErrorReason_ORDER_REVIEWED.String(), fmt.Sprintf(format, args...))
+	return errors.New(403, ErrorReason_ORDER_REVIEWED.String(), fmt.Sprintf(format, args...))
+}
+
+func IsDuplicateReply(err error) bool {
+	if err == nil {
+		return false
+	}
+	e := errors.FromError(err)
+	return e.Reason == ErrorReason_DUPLICATE_REPLY.String() && e.Code == 403
+}
+
+func ErrorDuplicateReply(format string, args ...interface{}) *errors.Error {
+	return errors.New(403, ErrorReason_DUPLICATE_REPLY.String(), fmt.Sprintf(format, args...))
+}
+
+func IsHorizontalOversteppingOfAuthority(err error) bool {
+	if err == nil {
+		return false
+	}
+	e := errors.FromError(err)
+	return e.Reason == ErrorReason_HORIZONTAL_OVERSTEPPING_OF_AUTHORITY.String() && e.Code == 403
+}
+
+func ErrorHorizontalOversteppingOfAuthority(format string, args ...interface{}) *errors.Error {
+	return errors.New(403, ErrorReason_HORIZONTAL_OVERSTEPPING_OF_AUTHORITY.String(), fmt.Sprintf(format, args...))
 }

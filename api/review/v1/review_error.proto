@@ -13,5 +13,7 @@ enum ErrorReason {
 
     NEED_LOGIN = 0 [(errors.code) = 401];
     DB_FAILED = 1 [(errors.code) = 500];
-    ORDER_REVIEWED = 2 [(errors.code) = 400];
+    ORDER_REVIEWED = 2 [(errors.code) = 403];
+    DUPLICATE_REPLY = 3 [(errors.code) = 403];
+    HORIZONTAL_OVERSTEPPING_OF_AUTHORITY = 4 [(errors.code) = 403];
 }
