@@ -22,7 +22,6 @@ func NewReviewService(uc *biz.ReviewUsecase, logger log.Logger) *ReviewService {
 }
 
 func (s *ReviewService) CreateReview(ctx context.Context, req *pb.CreateReviewRequest) (*pb.CreateReviewReply, error) {
-	s.log.WithContext(ctx).Debugf("CreateReview, req: %v", req)
 	var anonymous int32
 	if req.Anonymous {
 		anonymous = 1

@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v6.31.1
-// source: review/v1/review_error.proto
+// source: api/review/v1/review_error.proto
 
 package v1
 
@@ -25,22 +25,22 @@ const (
 type ErrorReason int32
 
 const (
-	ErrorReason_REVIEW_NOT_FOUND   ErrorReason = 0
-	ErrorReason_INVALID_PARAMETERS ErrorReason = 1
-	ErrorReason_SQL_ERROR          ErrorReason = 2
+	ErrorReason_NEED_LOGIN     ErrorReason = 0
+	ErrorReason_DB_FAILED      ErrorReason = 1
+	ErrorReason_ORDER_REVIEWED ErrorReason = 2
 )
 
 // Enum value maps for ErrorReason.
 var (
 	ErrorReason_name = map[int32]string{
-		0: "REVIEW_NOT_FOUND",
-		1: "INVALID_PARAMETERS",
-		2: "SQL_ERROR",
+		0: "NEED_LOGIN",
+		1: "DB_FAILED",
+		2: "ORDER_REVIEWED",
 	}
 	ErrorReason_value = map[string]int32{
-		"REVIEW_NOT_FOUND":   0,
-		"INVALID_PARAMETERS": 1,
-		"SQL_ERROR":          2,
+		"NEED_LOGIN":     0,
+		"DB_FAILED":      1,
+		"ORDER_REVIEWED": 2,
 	}
 )
 
@@ -55,11 +55,11 @@ func (x ErrorReason) String() string {
 }
 
 func (ErrorReason) Descriptor() protoreflect.EnumDescriptor {
-	return file_review_v1_review_error_proto_enumTypes[0].Descriptor()
+	return file_api_review_v1_review_error_proto_enumTypes[0].Descriptor()
 }
 
 func (ErrorReason) Type() protoreflect.EnumType {
-	return &file_review_v1_review_error_proto_enumTypes[0]
+	return &file_api_review_v1_review_error_proto_enumTypes[0]
 }
 
 func (x ErrorReason) Number() protoreflect.EnumNumber {
@@ -68,37 +68,38 @@ func (x ErrorReason) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ErrorReason.Descriptor instead.
 func (ErrorReason) EnumDescriptor() ([]byte, []int) {
-	return file_review_v1_review_error_proto_rawDescGZIP(), []int{0}
+	return file_api_review_v1_review_error_proto_rawDescGZIP(), []int{0}
 }
 
-var File_review_v1_review_error_proto protoreflect.FileDescriptor
+var File_api_review_v1_review_error_proto protoreflect.FileDescriptor
 
-const file_review_v1_review_error_proto_rawDesc = "" +
+const file_api_review_v1_review_error_proto_rawDesc = "" +
 	"\n" +
-	"\x1creview/v1/review_error.proto\x12\rapi.review.v1\x1a\x13errors/errors.proto*b\n" +
-	"\vErrorReason\x12\x1a\n" +
-	"\x10REVIEW_NOT_FOUND\x10\x00\x1a\x04\xa8E\x94\x03\x12\x1c\n" +
-	"\x12INVALID_PARAMETERS\x10\x01\x1a\x04\xa8E\x90\x03\x12\x13\n" +
-	"\tSQL_ERROR\x10\x02\x1a\x04\xa8E\xf4\x03\x1a\x04\xa0E\xf4\x03B2\n" +
+	" api/review/v1/review_error.proto\x12\rapi.review.v1\x1a\x13errors/errors.proto*X\n" +
+	"\vErrorReason\x12\x14\n" +
+	"\n" +
+	"NEED_LOGIN\x10\x00\x1a\x04\xa8E\x91\x03\x12\x13\n" +
+	"\tDB_FAILED\x10\x01\x1a\x04\xa8E\xf4\x03\x12\x18\n" +
+	"\x0eORDER_REVIEWED\x10\x02\x1a\x04\xa8E\x90\x03\x1a\x04\xa0E\xf4\x03B2\n" +
 	"\rapi.review.v1P\x01Z\x1freview-service/api/review/v1;v1b\x06proto3"
 
 var (
-	file_review_v1_review_error_proto_rawDescOnce sync.Once
-	file_review_v1_review_error_proto_rawDescData []byte
+	file_api_review_v1_review_error_proto_rawDescOnce sync.Once
+	file_api_review_v1_review_error_proto_rawDescData []byte
 )
 
-func file_review_v1_review_error_proto_rawDescGZIP() []byte {
-	file_review_v1_review_error_proto_rawDescOnce.Do(func() {
-		file_review_v1_review_error_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_review_v1_review_error_proto_rawDesc), len(file_review_v1_review_error_proto_rawDesc)))
+func file_api_review_v1_review_error_proto_rawDescGZIP() []byte {
+	file_api_review_v1_review_error_proto_rawDescOnce.Do(func() {
+		file_api_review_v1_review_error_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_api_review_v1_review_error_proto_rawDesc), len(file_api_review_v1_review_error_proto_rawDesc)))
 	})
-	return file_review_v1_review_error_proto_rawDescData
+	return file_api_review_v1_review_error_proto_rawDescData
 }
 
-var file_review_v1_review_error_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_review_v1_review_error_proto_goTypes = []any{
+var file_api_review_v1_review_error_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_api_review_v1_review_error_proto_goTypes = []any{
 	(ErrorReason)(0), // 0: api.review.v1.ErrorReason
 }
-var file_review_v1_review_error_proto_depIdxs = []int32{
+var file_api_review_v1_review_error_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
 	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -106,26 +107,26 @@ var file_review_v1_review_error_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_review_v1_review_error_proto_init() }
-func file_review_v1_review_error_proto_init() {
-	if File_review_v1_review_error_proto != nil {
+func init() { file_api_review_v1_review_error_proto_init() }
+func file_api_review_v1_review_error_proto_init() {
+	if File_api_review_v1_review_error_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_review_v1_review_error_proto_rawDesc), len(file_review_v1_review_error_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_review_v1_review_error_proto_rawDesc), len(file_api_review_v1_review_error_proto_rawDesc)),
 			NumEnums:      1,
 			NumMessages:   0,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_review_v1_review_error_proto_goTypes,
-		DependencyIndexes: file_review_v1_review_error_proto_depIdxs,
-		EnumInfos:         file_review_v1_review_error_proto_enumTypes,
+		GoTypes:           file_api_review_v1_review_error_proto_goTypes,
+		DependencyIndexes: file_api_review_v1_review_error_proto_depIdxs,
+		EnumInfos:         file_api_review_v1_review_error_proto_enumTypes,
 	}.Build()
-	File_review_v1_review_error_proto = out.File
-	file_review_v1_review_error_proto_goTypes = nil
-	file_review_v1_review_error_proto_depIdxs = nil
+	File_api_review_v1_review_error_proto = out.File
+	file_api_review_v1_review_error_proto_goTypes = nil
+	file_api_review_v1_review_error_proto_depIdxs = nil
 }

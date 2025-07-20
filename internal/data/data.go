@@ -6,7 +6,6 @@ import (
 	"review-service/internal/data/query"
 	"strings"
 
-	"github.com/go-kratos/kratos/v2/errors"
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/google/wire"
 	"gorm.io/driver/mysql"
@@ -16,11 +15,6 @@ import (
 
 // ProviderSet is data providers.
 var ProviderSet = wire.NewSet(NewData, NewReviewRepo, NewDB)
-
-var (
-	// ErrSQL
-	ErrSQL = errors.InternalServer(v1.ErrorReason_SQL_ERROR.String(), "internal server error")
-)
 
 // Data .
 type Data struct {
@@ -44,5 +38,5 @@ func NewDB(cfg *conf.Data) (*gorm.DB, error) {
 	case "sqlite":
 		return gorm.Open(sqlite.Open(cfg.Database.GetSource()))
 	}
-	return nil, ErrSQL
+	return nil, v1.ErrorDbFailed("unsupported database driver: %s", cfg.Database.GetDriver())
 }
