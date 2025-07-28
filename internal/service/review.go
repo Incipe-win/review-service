@@ -37,6 +37,7 @@ func (s *ReviewService) CreateReview(ctx context.Context, req *pb.CreateReviewRe
 		VideoInfo:    req.VideoInfo,
 		Anonymous:    anonymous,
 		Status:       0,
+		StoreID:      req.StoreID,
 	})
 	if err != nil {
 		return nil, err

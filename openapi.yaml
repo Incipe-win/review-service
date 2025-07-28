@@ -227,6 +227,9 @@ components:
                 anonymous:
                     type: boolean
                     description: 是否匿名
+                storeID:
+                    type: string
+                    description: 商户ID
             description: 创建评价的请求参数
         api.review.v1.GetReviewReply:
             type: object

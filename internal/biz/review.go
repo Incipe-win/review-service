@@ -45,6 +45,7 @@ func (uc *ReviewUsecase) CreateReview(ctx context.Context, review *model.ReviewI
 		return nil, v1.ErrorOrderReviewed("order %d has already been reviewed", review.OrderID)
 	}
 	review.ReviewID = snowflake.GenID()
+	uc.log.Debugf("review: %#v", review)
 	return uc.repo.SaveReview(ctx, review)
 }
 
